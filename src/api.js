@@ -24,3 +24,8 @@ export const createScores = async(url, data) => {
   });
   return response.json();
 };
+
+export const fetchScore = async(url) => {
+  const response = await fetch(url);
+  return response.json();
+};

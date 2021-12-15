@@ -1,3 +1,4 @@
+import { fetchScore, createScores, createGame } from './api';
 import './style.css';
 
 const innerBody = `<header>
@@ -7,16 +8,9 @@ const innerBody = `<header>
   <section class = "recent-content">
       <div class = "recent-score">
       <h2>Recent scores</h2>
-      <button type = "button">Refresh</button>
+      <button id="refresh" type ="button">Refresh</button>
       </div>
       <ul class = recent-list>
-        <li>Name: 100</li>
-        <li>Name: 20</li>
-        <li>Name: 50</li>
-        <li>Name: 78</li>
-        <li>Name: 125</li>
-        <li>Name: 77</li>
-        <li>Name: 42</li>
       </ul>
   </section>
   <section class="add-score">
@@ -72,3 +66,27 @@ const newScore = () => {
     window.location.reload();
   });
 };
+
+const getScores = async() => {
+  const ulTag = document.querySelector('.recent-list');
+  const liTag = document.createElement('li');
+  const smallTag1 = document.createElement('small');
+  const smallTag2 = document.createElement('small');
+  const url = `${baseURL}games/${gameIdFromStorage()}/scores/`;
+  const { result } = await fetchScore(url);
+  result.forEach(item => {
+    smallTag1.textContent = `${item.user}:`;
+    smallTag2.textContent = item.score;
+    liTag.appendChild(smallTag1);
+    liTag.appendChild(smallTag2);
+    ulTag.appendChild(liTag.cloneNode(true));
+  });
+};
+
+const refresh = document.querySelector('#refresh');
+refresh.addEventListener('click', () => {
+  window.location.reload();
+});
+getScores();
+saveGameOnLocalStorage();
+newScore();
