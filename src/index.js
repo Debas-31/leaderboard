@@ -1,5 +1,6 @@
 import { fetchScore, createScores, createGame } from './api';
 import './style.css';
+const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
 
 const innerBody = `<header>
 <h1>Leaderboard</h1>
@@ -16,8 +17,8 @@ const innerBody = `<header>
   <section class="add-score">
     <h2>Add your score</h2>
     <form action "#">
-      <input id="name" type="text" placeholder= "Your name">
-      <input id="score" type="number" placeholder= "Your score">
+      <input id="name" name = "name" type="text" placeholder= "Your name">
+      <input id="score" name="score" type="number" placeholder= "Your score">
       <input id="submit" type="submit" value="Submit">
     </form>
 </main>
