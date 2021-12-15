@@ -29,3 +29,20 @@ const innerBody = `<header>
 </main>
 `;
 document.body.innerHTML = innerBody;
+
+gameIdFromStorage = () => {
+  const localStorageID = localStorage.getItem('ID')? JSON.parse(localStorage.getItem('ID')) : null;
+  return localStorageID;
+};
+const saveGameOnLocalStorage = () => {
+  const data = {
+    name: 'My new game'
+  };
+  if(!gameIdFromStorage()){
+    window.addEventListener('load', async() => {
+      const { result } = await createGame(`${baseURL}games`, data);
+      const gameID = result.substr(14, 20);
+      localStorage.setItem('ID', JSON.stringify(gameID));
+    });
+  }
+};
