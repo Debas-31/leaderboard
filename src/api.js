@@ -1,17 +1,17 @@
-export const createGame = async(url, data) =>{
-    const response = await fetch(url,{
-        method: 'POST',
-        body: JSON.stringify({
-            name: Date.name,
-        }),
-        headers: {
-            'content-type': 'application/json;  charset = UTF-8',
-        },
-    });
-    return response.json();
+export const createGame = async (url) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({
+      name: Date.name,
+    }),
+    headers: {
+      'content-type': 'application/json;  charset = UTF-8',
+    },
+  });
+  return response.json();
 };
 
-export const createScores = async(url, data) => {
+export const createScores = async (url, data) => {
   const response = await fetch(url, {
     method: 'Post',
     body: JSON.stringify({
@@ -19,13 +19,13 @@ export const createScores = async(url, data) => {
       score: data.score,
     }),
     headers: {
-      'content-type': 'application/json; charset=UTF-8'
+      'content-type': 'application/json; charset=UTF-8',
     },
   });
   return response.json();
 };
 
-export const fetchScore = async(url) => {
+export const fetchScore = async (url) => {
   const response = await fetch(url);
   return response.json();
 };

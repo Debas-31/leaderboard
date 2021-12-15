@@ -1,5 +1,6 @@
-import { fetchScore, createScores, createGame } from './api';
+import { fetchScore, createScores, createGame } from './api.js';
 import './style.css';
+
 const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
 
 const innerBody = `<header>
@@ -26,15 +27,15 @@ const innerBody = `<header>
 document.body.innerHTML = innerBody;
 
 const gameIdFromStorage = () => {
-  const localStorageID = localStorage.getItem('ID')? JSON.parse(localStorage.getItem('ID')) : null;
+  const localStorageID = localStorage.getItem('ID') ? JSON.parse(localStorage.getItem('ID')) : null;
   return localStorageID;
 };
 const saveGameOnLocalStorage = () => {
   const data = {
-    name: 'My new game'
+    name: 'My new game',
   };
-  if(!gameIdFromStorage()){
-    window.addEventListener('load', async() => {
+  if (!gameIdFromStorage()) {
+    window.addEventListener('load', async () => {
       const { result } = await createGame(`${baseURL}games`, data);
       const gameID = result.substr(14, 20);
       localStorage.setItem('ID', JSON.stringify(gameID));
@@ -45,7 +46,7 @@ const saveGameOnLocalStorage = () => {
 const newScore = () => {
   const data = {
     user: '',
-    score: ''
+    score: '',
   };
   const player = document.getElementById('name');
   const playerScore = document.getElementById('score');
@@ -58,7 +59,7 @@ const newScore = () => {
     data.score = e.target.value;
   });
 
-  submitData.addEventListener('click', async(e) => {
+  submitData.addEventListener('click', async (e) => {
     e.preventDefault();
     const url = `${baseURL}games/${gameIdFromStorage()}/scores`;
     await createScores(url, data);
@@ -68,14 +69,14 @@ const newScore = () => {
   });
 };
 
-const getScores = async() => {
+const getScores = async () => {
   const ulTag = document.querySelector('.recent-list');
   const liTag = document.createElement('li');
   const smallTag1 = document.createElement('small');
   const smallTag2 = document.createElement('small');
   const url = `${baseURL}games/${gameIdFromStorage()}/scores/`;
   const { result } = await fetchScore(url);
-  result.forEach(item => {
+  result.forEach((item) => {
     smallTag1.textContent = `${item.user}:`;
     smallTag2.textContent = item.score;
     liTag.appendChild(smallTag1);
