@@ -10,3 +10,17 @@ export const createGame = async(url, data) =>{
     });
     return response.json();
 };
+
+export const createScores = async(url, data) => {
+  const response = await fetch(url, {
+    method: 'Post',
+    body: JSON.stringify({
+      user: data.user,
+      score: data.score,
+    }),
+    headers: {
+      'content-type': 'application/json; charset=UTF-8'
+    },
+  });
+  return response.json();
+};
