@@ -22,15 +22,15 @@ const innerBody = `<header>
   <section class="add-score">
     <h2>Add your score</h2>
     <form action "#">
-      <input type="text" placeholder= "Your name">
-      <input type="number" placeholder= "Your score">
-      <input type="submit" value="Submit">
+      <input id="name" type="text" placeholder= "Your name">
+      <input id="score" type="number" placeholder= "Your score">
+      <input id="submit" type="submit" value="Submit">
     </form>
 </main>
 `;
 document.body.innerHTML = innerBody;
 
-gameIdFromStorage = () => {
+const gameIdFromStorage = () => {
   const localStorageID = localStorage.getItem('ID')? JSON.parse(localStorage.getItem('ID')) : null;
   return localStorageID;
 };
@@ -45,4 +45,30 @@ const saveGameOnLocalStorage = () => {
       localStorage.setItem('ID', JSON.stringify(gameID));
     });
   }
+};
+
+const newScore = () => {
+  const data = {
+    user: '',
+    score: ''
+  };
+  const player = document.getElementById('name');
+  const playerScore = document.getElementById('score');
+  const submitData = document.getElementById('submit');
+
+  player.addEventListener('change', (e) => {
+    data.user = e.target.value;
+  });
+  playerScore.addEventListener('change', (e) => {
+    data.score = e.target.value;
+  });
+
+  submitData.addEventListener('click', async(e) => {
+    e.preventDefault();
+    const url = `${baseURL}games/${gameIdFromStorage()}/scores`;
+    await createScores(url, data);
+    player.value = '';
+    playerScore.value = '';
+    window.location.reload();
+  });
 };
