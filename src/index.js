@@ -22,7 +22,7 @@ const innerBody = `<header>
   <section class="add-score">
     <h2>Add your score</h2>
     <form action "#">
-      <input type="text" placeholder= "name">
+      <input type="text" placeholder= "Your name">
       <input type="number" placeholder= "Your score">
       <input type="submit" value="Submit">
     </form>
