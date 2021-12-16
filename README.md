@@ -6,7 +6,7 @@
 
 
 ### ScreenShoot
-![screenshot](./image/Setup-LeaderScreenShot.png)
+![screenshot](./image/../screenShot-finalLeaderBoard.png)
 
 
 ## Built With

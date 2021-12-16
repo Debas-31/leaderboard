@@ -90,12 +90,12 @@ input[type=submit] {
   margin-left: auto;
   padding: 5px 14px;
   border-bottom: 4px solid black;
-  border-right: 4px solid black; 
+  border-right: 4px solid black;
   background-color: #001e96;
   color: #f4f4f4;
 }
 
-.add-score h2{
+.add-score h2 {
   color: #f4f4f4;
   font-weight: 500;
 }
