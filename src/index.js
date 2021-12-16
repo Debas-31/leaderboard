@@ -10,7 +10,7 @@ const innerBody = `<header>
   <section class = "recent-content">
       <div class = "recent-score">
       <h2>Recent scores</h2>
-      <button id="refresh" type ="button">Refresh</button>
+      <input id="refresh" type="button" value="Refresh">
       </div>
       <ul class = recent-list>
       </ul>
@@ -22,7 +22,11 @@ const innerBody = `<header>
       <input id="score" name="score" type="number" placeholder= "Your score">
       <input id="submit" type="submit" value="Submit">
     </form>
+  </section>
 </main>
+<footer>
+  <p>Copyright &copy;2021&nbsp;&nbsp;Designed by: Dbus</p>
+</footer>
 `;
 document.body.innerHTML = innerBody;
 
