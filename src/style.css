@@ -41,6 +41,7 @@ li {
 
 small {
   padding: 0 0.5rem;
+  max-width: 5%;
 }
 
 ul {
